@@ -4,11 +4,12 @@
     <meta charset="UTF-8">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    
     <link rel="preconnect" href="https://fonts.googleapis.com">
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
 <link href="https://fonts.googleapis.com/css2?family=Lora&family=Nunito+Sans&display=swap" rel="stylesheet">
-    <link rel="stylesheet" href="styles.css">
+<script src="http://ajax.googleapis.com/ajax/libs/jquery/1/jquery.min.js"></script>
+  
+<link rel="stylesheet" href="./styles/styles.css">
 <title>Document</title>
 </head>
 <body>
@@ -17,14 +18,14 @@
             dines
         </a></nav>
         <nav class="nav__container">
-            <a href="add.html"class="nav">
-                Add dine
+            <a href="createDine.html"class="nav">
+             Create dine
             </a>
-            <a href="index.html"class="nav">
+            <a href="getMyDines.html"class="nav">
                 My dines
             </a>
-            <a class="nav">
-                Map
+            <a href="getDines.html" class="nav">
+                Community dines
             </a>
             <a class="nav" href="login.html">
                 Login/Register
@@ -33,18 +34,18 @@
     </header>
 
     <main>
-        <form action="">
+        <form >
             <p class="form__title">Login</p>
 
 
             <label class="input__container">
-                <span class="input__title">Username</span>
-                <input class="input"type="text">
+                <span class="input__title" >Username</span>
+                <input class="input"type="text" id="username">
             </label>
 
             <label class="input__container">
                 <span class="input__title">Password</span>
-                <input class="input"type="text">
+                <input class="input"type="password" id="password">
             </label>
         
             
@@ -53,11 +54,87 @@
                 Login 
             </button>
 
-            <a  href="./register.html"class="nav--register">New? Create an account</a>
+            <p id="message--error" class="message--error"></p>
+
+
+            <a  href="./createUser.html"class="nav--register">New? Create an account</a>
         
         </form>
 
         
     </main>
+
+    <script>
+      
+
+$('.button--submit').click(function(event){
+    event.preventDefault()
+    let username=document.getElementById('username').value;
+    let password=document.getElementById('password').value;
+
+    if(username.length==0 ||  password.length==0 ){
+        $("#message--error").html("None of the values can be left empty") 
+    }
+ 
+
+    
+    else{
+
+    let route = "username="+username+"&password="+password;
+    console.log(route) 
+    
+    $.ajax({
+        url: 'http://localhost/dines/api/login.php',
+        type: 'POST',
+        data: route,
+    })	
+     .done(function(res) {
+
+        console.log(res)
+        
+        if(res == "no data"){
+            $("#message--error").css({ 
+            "margin-top": "10px",
+            "font-size": "2rem",
+            "text-align": "center",
+            "color": "red"})   
+        $("#message--error").html("Incorrect user or password")
+        }else{
+            $("#message--error").css({ 
+            "margin-top": "10px",
+            "font-size": "2rem",
+            "text-align": "center",
+            "color": "green"})   
+        $("#message--error").html("Login was successful")  
+
+        let user = JSON.parse(res)
+         let userId = user.id
+        console.log(userId)
+
+        
+        document.cookie = "userId="+userId;
+
+      
+        
+        setTimeout(() =>{
+            window.location.href = "getMyDines.html";
+        },1000)
+        }
+        
+        
+     })
+     
+     .fail(function() {
+         console.log("error");
+     })
+     
+     .always(function() {
+         console.log("complete");
+            
+    });
+    }
+});
+</script>
+    </script>
 </body>
 </html>

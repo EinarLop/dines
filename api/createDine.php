@@ -10,21 +10,23 @@ function debug_to_console($data) {
     echo "<script>console.log('Debug Objects: " . $output . "' );</script>";
 }
 
-
+    $user_id=$_POST['user_id'];
 	$name=$_POST['name'];
 	$description=$_POST['description'];
 	$score=$_POST['score'];
     $restaurant=$_POST['restaurant'];
     $address=$_POST['address'];
-    $date= '2016-10-11';
+    $date= $_POST['date'];
     $image='./images/coffee.jpeg';
 
-	
-	
-	$query = "INSERT INTO dines(name,description,score,restaurant,address,date,image) VALUES ('$name','$description','$score','$restaurant','$address', '$date','$image')";
 
+	
+	$query = "INSERT INTO dines(user_id,name, description,score,restaurant,address,date,image) VALUES ($user_id, '$name','$description','$score','$restaurant','$address', '$date','$image')";
+
+    echo $query;
 	if(!databaseConnection($query)){
-        debug_to_console("Error");
+        echo "Error";
+        
 	}else{
         debug_to_console("Test");
 	}

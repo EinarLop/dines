@@ -119,6 +119,37 @@ input:focus {
   color: white;
 }
 
+.button--delete {
+  margin: 0 auto;
+  margin-top: 15px;
+  height: 35px;
+  width: 45%;
+  border: none;
+  border-radius: 3px;
+  font-family: "Nunito Sans", sans-serif;
+  font-size: 2rem;
+  background-color: #a00b0b;
+  color: white;
+}
+
+.button--update {
+  margin: 0 auto;
+  margin-top: 15px;
+  height: 35px;
+  width: 45%;
+  border: none;
+  border-radius: 3px;
+  font-family: "Nunito Sans", sans-serif;
+  font-size: 2rem;
+  background-color: #03609e;
+  color: white;
+}
+
+.button__divider {
+  display: inline-block;
+  width: 7%;
+}
+
 .card {
   max-width: 650px;
   display: flex;
@@ -175,4 +206,58 @@ input:focus {
   font-size: 2rem;
   text-align: center;
   color: red;
+}
+
+/* 0000000000000000000 */
+.home__container {
+  display: flex;
+  flex-wrap: wrap;
+  max-width: 1024px;
+  margin: 0 auto;
+  margin-top: 50px;
+}
+
+.home__divider {
+  width: 6%;
+}
+
+.home__title {
+  font-size: 4rem;
+  font-family: "Lora", serif;
+}
+.home__about {
+  font-size: 2rem;
+  text-align: justify;
+}
+
+.home__content__container {
+  width: 34%;
+}
+.home__image__container {
+  /* background-color: #f5f5f5; */
+  width: 60%;
+  margin-bottom: 35px;
+}
+.home__image {
+  width: 100%;
+}
+
+.signup__container {
+  width: 100%;
+  display: flex;
+  justify-content: center;
+  text-decoration: none;
+}
+
+.button--signup {
+  margin: 0 auto;
+  margin-top: 25px;
+  height: 50px;
+  width: 30%;
+  border: none;
+  border-radius: 10px;
+  font-family: "Nunito Sans", sans-serif;
+  font-size: 2rem;
+  background-color: #03565a;
+  color: white;
 }

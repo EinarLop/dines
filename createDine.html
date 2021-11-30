@@ -10,7 +10,7 @@
     <link href="https://fonts.googleapis.com/css2?family=Lora&family=Nunito+Sans&display=swap" rel="stylesheet">
 	<script src="http://ajax.googleapis.com/ajax/libs/jquery/1/jquery.min.js"></script>
     
-<link rel="stylesheet" href="styles.css">
+<link rel="stylesheet" href="styles/styles.css">
 <title>Document</title>
 </head>
 <body>
@@ -19,14 +19,14 @@
             dines
         </a></nav>
         <nav class="nav__container">
-            <a href="add.html"class="nav">
-                Add dine
+            <a href="createDine.html"class="nav">
+             Create dine
             </a>
-            <a href="index.html"class="nav">
+            <a href="getMyDines.html"class="nav">
                 My dines
             </a>
-            <a class="nav">
-                Map
+            <a href="getDines.html" class="nav">
+                Community dines
             </a>
             <a class="nav" href="login.html">
                 Login/Register
@@ -64,6 +64,11 @@
                 <input class="input" type="text"id="address">
             </label>
 
+            <label class="input__container">
+                <span class="input__title">Date</span>
+                <input class="input" type="date"id="date">
+            </label>
+
             <button class="button--submit">
                 Add
             </button>
@@ -79,20 +84,26 @@
             let score=document.getElementById('score').value;
             let restaurant=document.getElementById('restaurant').value;
             let address=document.getElementById('address').value;
+            let date=document.getElementById('date').value;
 
         
-			if(name.length==0 || description.length==0 || score.length==0 || restaurant.length==0 || address.length ==0){
+			if(name.length==0 || description.length==0 || score.length==0 || restaurant.length==0 || address.length ==0 ){
                 $("#message--error").html("None of the values can be left empty")        
             }
             else if(parseInt(score)<0 || parseInt(score)>5){
                 $("#message--error").html("The score can only be between 0 and 5")        
             }
             else{
+
+            let cookie = document.cookie
+            let i = cookie.indexOf("=")
+            let userId = cookie.substring(i+1)
+            console.log(userId)  
 			
-			let route = "name="+name+"&description="+description+"&score="+score+"&restaurant="+restaurant+"&address="+address;
+			let route = "user_id="+userId+"&name="+name+"&description="+description+"&score="+score+"&restaurant="+restaurant+"&address="+address+"&date="+date;
 			
 			$.ajax({
-				url: 'createDine.php',
+				url: 'http://localhost/dines/api/createDine.php',
 				type: 'POST',
 				data: route,
 			})	
@@ -105,7 +116,7 @@
                     "color": "green"})   
                 $("#message--error").html("Dine created successfully")        
                 setTimeout(() =>{
-                    window.location.href = "index.html";
+                    window.location.href = "getMyDines.html";
                 },1000)
                  
 			 })

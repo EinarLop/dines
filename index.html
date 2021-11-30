@@ -8,74 +8,26 @@
     <link rel="preconnect" href="https://fonts.googleapis.com">
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
 <link href="https://fonts.googleapis.com/css2?family=Lora&family=Nunito+Sans&display=swap" rel="stylesheet">
-    <link rel="stylesheet" href="styles.css">
+    <link rel="stylesheet" href="./styles/styles.css">
 	<script src="http://ajax.googleapis.com/ajax/libs/jquery/1/jquery.min.js"></script>
 
 <title>Document</title>
 </head>
 
-
-<script>
- 
-
-    $(window).load(function(){
-        
-			
-			$.ajax({
-                type: "GET",
-                url: "getDines.php",
-                dataType: "JSON",
-                success: (res) => {
-                container = $("#card__container")
-                    
-                    $.each(res, function (index, dine) {
-                        container.html(container.html() + 
-                        
-                        
-                        
-                    ` <div class="card">
-            <picture class="image__container">
-                <img class="image"src="${dine.image}" alt="">
-            </picture>
-        <div class="card__division">
-        </div>
-            <div class="card__content">
-                <p class="content__title">${dine.name}</p>
-                <p class="content__description"> <b>About: </b>${dine.description}</p>
-                <p class="content__description"> <b>Price:</b> 100$</p>
-                <p class="content__description"> <b>Raiting:</b> ${dine.score}/5</p>
-                <p class="content__description"> <b>Restaurant:</b> ${dine.restaurant}</p>
-                <p class="content__address"> <b>Address: </b> ${dine.address}</p>
-                
-            </div>
-            </div> `
-
-
-                        
-                        
-                        )  
-                });
-            }   
-    });
-
-    })
-
-
-</script>
 <body>
     <header>
         <nav ><a class="icon" href="index.html">
             dines
         </a></nav>
         <nav class="nav__container">
-            <a href="add.html"class="nav">
-                Add dine
+            <a href="createDine.html"class="nav">
+             Create dine
             </a>
-            <a href="index.html"class="nav">
+            <a href="getMyDines.html"class="nav">
                 My dines
             </a>
-            <a class="nav">
-                Map
+            <a href="getDines.html" class="nav">
+                Community dines
             </a>
             <a class="nav" href="login.html">
                 Login/Register
@@ -83,12 +35,47 @@
         </nav>
     </header>
 
-    <main id="card__container" class="card__container">
-       
-    
-    </main>
+    <main id="home__container" class="home__container">
+   <section class="home__content__container">
+       <p class="home__title">Pomodoro With Me ...</p>
+       <p class="home__about">Pomodoro with me will not only help you finish your tasks on time, it will also prevent burn out. By taking some time off between work sessions it gives your brain a rest and helps you focus on the next work session. Later on there will be a setting to change the pomodoro time to whatever works better for you.</p>
+   </section>
+   <div class="home__divider"></div>
+    <picture class="home__image__container">
+        <img class="home__image" src="images/food1.jpg" alt="">
+    </picture>
 
- 
+     <picture class="home__image__container">
+         <img class="home__image" src="images/food3.jpg" alt="">
+     </picture>
+     <div class="home__divider"></div>
+
+    <section class="home__content__container">
+        <p class="home__title">Pomodoro With Me ...</p>
+        <p class="home__about">With the task tracker you will always know what task you have to do next. At a glance you will be able to see which task has a higher priority and when they are due. in a new update you will also be able to categorize your tasks and also create new lists to keep evething well orginized.</p>
+    </section>
+
+    <section class="home__content__container">
+        <p class="home__title">Pomodoro With Me ...</p>
+        <p class="home__about">Do your tasks on time and you will get points! The more tasks you do the higher you'll be in the leaderboard. Compete by being productive. Get workin'!
+            In the future you will be able to sped your points in themes, to make this page look the way you want.</p>
+    </section>
+
+    <div class="home__divider"></div>
+
+
+    <picture class="home__image__container">
+        <img class="home__image" src="images/food2.jpg" alt="">
+    </picture>
+
+  <a href="createUser.html" class="signup__container">
+
+    <button class="button--signup">Sign up</button>
+  </a>
+
+    
+       
+    </main>
     
 </body>
 </html>

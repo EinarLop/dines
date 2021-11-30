@@ -9,8 +9,9 @@ include('databaseConnection.php');
 
 //     echo "<script>console.log('Debug Objects: " . $output . "' );</script>";
 // }
+    $user_id=$_POST['user_id'];
 
-	$query = "SELECT * FROM dines ORDER BY date DESC";
+	$query = "SELECT * FROM dines WHERE user_id = $user_id";
     $result = databaseConnection($query);
     $data = new ArrayObject(array());
     $i=0;
@@ -25,6 +26,7 @@ include('databaseConnection.php');
     while($row = mysqli_fetch_assoc($result)){
         
         $current = array(
+            "id" => $row["id"],
             "name" => $row["name"],
             "description" => $row["description"],
             "score" => $row["score"],

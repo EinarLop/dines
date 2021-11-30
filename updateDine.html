@@ -1,0 +1,181 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Lora&family=Nunito+Sans&display=swap" rel="stylesheet">
+	<script src="http://ajax.googleapis.com/ajax/libs/jquery/1/jquery.min.js"></script>
+    
+<link rel="stylesheet" href="styles/styles.css">
+<title>Document</title>
+</head>
+
+<script>
+      $(window).load(function(){
+
+        let url = new URL(window.location.href)
+        var id = url.searchParams.get("id");
+        console.log(id)
+        let route = "id="+id;
+        
+			
+        $.ajax({
+            url: 'http://localhost/dines/api/getDineById.php',
+            type: 'POST',
+           
+            data: route,
+            success: () => {console.log(1)}
+        })
+
+            .done(function(res){
+                console.log(res)
+                let dine = JSON.parse(res)
+                console.log(dine.name)
+                
+                document.querySelector("#form--update").innerHTML = 
+                `
+             <form action="">
+            <p class="form__title">Update dine</p>
+
+
+            <label class="input__container">
+                <span class="input__title">Name</span>
+                <input class="input" value="${dine.name}" type="text" id="name">
+            </label>
+
+            <label class="input__container">
+                <span class="input__title">Description</span>
+                <input class="input" value="${dine.description}" type="text"id="description">
+            </label>
+        
+            <label class="input__container">
+                <span class="input__title">Score</span>
+                <input class="input" value="${dine.score}" type="number" id="score">
+            </label>
+
+            <label class="input__container">
+                <span class="input__title">Restaurant</span>
+                <input class="input" value="${dine.restaurant}"  type="text"id="restaurant">
+            </label>
+
+            <label class="input__container">
+                <span class="input__title">Address</span>
+                <input class="input" value="${dine.address}" type="text"id="address">
+            </label>
+
+            <label class="input__container">
+                <span class="input__title">Date</span>
+                <input class="input" value="${dine.date}" type="date"id="date">
+            </label>
+
+            <button onclick="updateDine('${dine.id}')"class="button--submit">
+                Add
+            </button>
+        <p id="message--error" class="message--error"></p>
+        </form>
+                `
+
+
+                    
+                    
+                     
+            })
+           
+     .fail(function(error){
+    console.log(error.responseText)
+})
+      })
+
+</script>
+<body>
+    <header>
+        <nav ><a class="icon" href="index.html">
+            dines
+        </a></nav>
+        <nav class="nav__container">
+            <a href="createDine.html"class="nav">
+             Create dine
+            </a>
+            <a href="getMyDines.html"class="nav">
+                My dines
+            </a>
+            <a href="getDines.html" class="nav">
+                Community dines
+            </a>
+            <a class="nav" href="login.html">
+                Login/Register
+            </a>
+        </nav>
+    </header>
+
+    <main id="form--update">
+       
+    </main>
+    <script>
+
+        function updateDine(id){
+
+ 
+            console.log("iiii"+id)
+
+			event.preventDefault()
+            
+			let name=document.getElementById('name').value;
+            let description=document.getElementById('description').value;
+            let score=document.getElementById('score').value;
+            let restaurant=document.getElementById('restaurant').value;
+            let address=document.getElementById('address').value;
+            let date=document.getElementById('date').value;
+
+        
+			if(name.length==0 || description.length==0 || score.length==0 || restaurant.length==0 || address.length ==0 ){
+                $("#message--error").html("None of the values can be left empty")        
+            }
+            else if(parseInt(score)<0 || parseInt(score)>5){
+                $("#message--error").html("The score can only be between 0 and 5")        
+            }
+            else{
+
+           
+			
+			let route = "id="+id+"&name="+name+"&description="+description+"&score="+score+"&restaurant="+restaurant+"&address="+address+"&date="+date;
+		
+			$.ajax({
+				url: 'http://localhost/dines/api/updateDine.php',
+				type: 'POST',
+				data: route,
+			})	
+			 .done(function(res) {
+				console.log(res)
+                $("#message--error").css({ 
+                    "margin-top": "10px",
+                    "font-size": "2rem",
+                    "text-align": "center",
+                    "color": "green"})   
+                $("#message--error").html("Dine created successfully")        
+                setTimeout(() =>{
+                    window.location.href = "getMyDines.html";
+                },1000)
+                 
+			 })
+			 
+			 .fail(function() {
+				 console.log("error");
+			 })
+			 
+			 .always(function() {
+				 console.log("complete");
+					
+			});
+
+            }
+			
+		}
+         
+    </script>
+</body>
+</html>
