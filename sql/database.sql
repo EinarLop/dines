@@ -1,5 +1,7 @@
 CREATE DATABASE IF NOT EXISTS dines ;
 
+USE dines;
+ 
 CREATE TABLE IF NOT EXISTS dines(
     id INT NOT NULL AUTO_INCREMENT,
     user_id  INT NOT NULL,
@@ -22,6 +24,22 @@ CREATE TABLE  IF NOT EXISTS users(
     PRIMARY KEY (id)
 );
 
+
+
+
+INSERT INTO users
+    (username, email, password)
+    VALUES('Einar', 'einarlop0@gmail.com', '123');
+
+INSERT INTO users
+    (username, email, password)
+    VALUES('Pancho', 'pancho123@gmail.com', '123');
+
+INSERT INTO users
+    (username, email, password)
+    VALUES('Ximena', 'ximena123@gmail.com', '123');
+
+
 INSERT INTO dines
     ( user_id,name, description,score,restaurant,address,date,image)
     VALUES (1,'Muffin & coffee','Blueberry muffin filled with cream cheese and strawberry jam','5','Niddo','Dresde 2, Juárez, Cuauhtémoc, 06600 Ciudad de México, CDMX', '2021-10-10','./images/coffee.jpeg');
@@ -32,9 +50,13 @@ INSERT INTO dines
 
 INSERT INTO dines
     ( user_id,name,description,score,restaurant,address,date,image)
-    VALUES (1,'Double chesseburger','Smashed double burger with American and Monterrey Jack cheese','5','Pinto Bar','Av. del Roble 300, Residencial Santa Barbara, 66266 San Pedro Garza García, N.L.', '2021-10-10','./images/burger.jpeg');
+    VALUES (2,'Double chesseburger','Smashed double burger with American and Monterrey Jack cheese','5','Pinto Bar','Av. del Roble 300, Residencial Santa Barbara, 66266 San Pedro Garza García, N.L.', '2021-10-10','./images/burger.jpeg');
 
 INSERT INTO dines
     ( user_id,name,description,score,restaurant,address,date,image)
-    VALUES (1,'Chicarron tacos','Authentic chicharron tacos from Monterrey toped with pickled onions','4','Taquería Orinoco','Av. Del Estado 221, Tecnológico, 64700 Monterrey, N.L', '2021-10-10','./images/tacos.jpeg');
+    VALUES (2,'Chicarron tacos','Authentic chicharron tacos from Monterrey toped with pickled onions','4','Taquería Orinoco','Av. Del Estado 221, Tecnológico, 64700 Monterrey, N.L', '2021-10-10','./images/tacos.jpeg');
+
+INSERT INTO dines
+    ( user_id,name,description,score,restaurant,address,date,image)
+    VALUES (3,'Latte and croissant','2 espresso shots with whole milk paired with a Nutella filled croissant','3','Cafe Cacao','Av. Del Estado 203 A, Tecnológico, 64700 Monterrey, N.L.', '2020-11-12','./images/coffee2.jpeg');
 

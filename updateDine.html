@@ -11,7 +11,7 @@
 	<script src="http://ajax.googleapis.com/ajax/libs/jquery/1/jquery.min.js"></script>
     
 <link rel="stylesheet" href="styles/styles.css">
-<title>Document</title>
+<title>Dines</title>
 </head>
 
 <script>
@@ -73,7 +73,7 @@
             </label>
 
             <button onclick="updateDine('${dine.id}')"class="button--submit">
-                Add
+                Update
             </button>
         <p id="message--error" class="message--error"></p>
         </form>
@@ -120,7 +120,7 @@
         function updateDine(id){
 
  
-            console.log("iiii"+id)
+     
 
 			event.preventDefault()
             
@@ -156,7 +156,7 @@
                     "font-size": "2rem",
                     "text-align": "center",
                     "color": "green"})   
-                $("#message--error").html("Dine created successfully")        
+                $("#message--error").html("Dine updated successfully")        
                 setTimeout(() =>{
                     window.location.href = "getMyDines.html";
                 },1000)

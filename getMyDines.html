@@ -11,7 +11,7 @@
     <link rel="stylesheet" href="styles/styles.css">
 	<script src="http://ajax.googleapis.com/ajax/libs/jquery/1/jquery.min.js"></script>
 
-<title>Document</title>
+    <title>Dines</title>
 </head>
 
 
@@ -57,6 +57,7 @@
                 <button class="button--update" "> <a href="updateDine.html?id=${dine.id}" style="text-decoration:none; color:white"> Update</a> </button>
                 <div class="button__divider"> </div>
                 <button class="button--delete" onclick="deleteDine(${dine.id})"> Delete</button>
+                <p id="message--error" class="message--error"></p>
             </div>
           
             </div> `
@@ -84,6 +85,12 @@ function deleteDine(id){
 			})	
             .done(function(res) {
                 console.log(res)
+                $("#message--error").css({ 
+                    "margin-top": "10px",
+                    "font-size": "2rem",
+                    "text-align": "center",
+                    "color": "green"})   
+                $("#message--error").html("Dine deleted successfully")    
                 setTimeout(() =>{
                     window.location.href = "getMyDines.html";
                 },1000)

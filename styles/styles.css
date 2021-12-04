@@ -228,6 +228,7 @@ input:focus {
 .home__about {
   font-size: 2rem;
   text-align: justify;
+  line-height: 3rem;
 }
 
 .home__content__container {
